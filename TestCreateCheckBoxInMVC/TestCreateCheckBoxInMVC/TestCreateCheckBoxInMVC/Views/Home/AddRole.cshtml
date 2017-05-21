@@ -1,0 +1,47 @@
+﻿@model List<TestCreateCheckBoxInMVC.Models.RoleCheckBoxModel>  
+
+@{
+    ViewBag.Title = "AddRole";
+}
+
+<h2>AddRole</h2>
+
+
+@using (Html.BeginForm())
+{
+
+    for (var i = 0; i < Model.Count(); i++)
+    {
+        <table>
+            <tr>
+                <td>
+                    @Html.DisplayFor(it => it[i].Name)
+                    
+                </td>
+                <td>
+                    @Html.CheckBoxFor(it => it[i].Checked, new { Style = "vertical-            align:3px}" })
+                </td>
+            </tr>
+        </table>
+
+    }
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
